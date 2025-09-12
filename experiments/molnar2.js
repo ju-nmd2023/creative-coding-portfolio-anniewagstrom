@@ -43,7 +43,9 @@ function drawLayersTriangle(x, y, size, layers, t) {
 
 
 function draw() {
-  background(255, 150, 200);
+  // background(255, 150, 200);
+  let c1 = color(255, 120 + 50 * sin(t * 2), 180 + 40 * cos(t * 2));
+  let c2 = color(255, 180 + 40 * cos(t * 2), 220 + 50 * sin(t * 2));
 
   let cols = 4;
   let rows = 4;
@@ -55,6 +57,13 @@ function draw() {
   // offsets to center the grid
   let offsetX = (width - gridW) / 2;
   let offsetY = (height - gridH) / 2;
+
+  for (let y = 0; y < height; y++) {
+    let inter = map(y, 0, height, 0, 1);
+    let c = lerpColor(c1, c2, inter);
+    stroke(c);
+    line(0, y, width, y);
+  }
 
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
