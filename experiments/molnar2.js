@@ -43,7 +43,7 @@ function drawLayersTriangle(x, y, size, layers, t) {
 
 
 function draw() {
-  background(255, 150, 190);
+  background(255, 150, 200);
 
   let cols = 4;
   let rows = 4;
