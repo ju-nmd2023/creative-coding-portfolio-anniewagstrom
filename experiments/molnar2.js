@@ -56,7 +56,7 @@ function draw() {
 
   // offsets to center the grid
   let offsetX = (width - gridW) / 2;
-  let offsetY = (height - gridH) / 2 - 150;
+  let offsetY = (height - gridH) / 2 - 200;
 
   for (let y = 0; y < height; y++) {
     let inter = map(y, 0, height, 0, 1);
