@@ -1,12 +1,12 @@
 [
   {
     "file": "experiments/molnar.js",
-    "name": "Ocean Tiles",
+    "name": "V1 - Ocean Tiles",
     "description": "Layered blue squares arranged in a grid with random variations."
   },
   {
     "file": "experiments/molnar2.js",
-    "name": "Play",
-    "description": "This is inspired by Ed Sheeran's new album Play."
+    "name": "V2 - Play",
+    "description": "This is inspired by Ed Sheeran's new album Play while keeping the main artidea of Vera Molnár."
   }
 ]
