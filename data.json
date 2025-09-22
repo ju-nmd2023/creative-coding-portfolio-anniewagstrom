@@ -23,5 +23,10 @@
   "file": "experiments/flowfield.js",
   "name": "flowfield",
   "description": "Flowfield inspired by Garrit's example."
+ },
+ {
+  "file": "experiments/flowy.js",
+  "name": "flow 2",
+  "description": "flow 2"
  }
 ]
