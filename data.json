@@ -18,5 +18,10 @@
     "file": "experiments/waveclock.js",
     "name": "Midnight Whirl",
     "description": "A colorful wavy spiral, inspired by Matt Pearson. In the Wave Clock, Pearson uses Perlin noise and spirals to create dynamic generative visuals."
-  }
+  },
+{
+  "file": "experiments/flowfield.js",
+  "name": "flowfield",
+  "description": "Flowfield inspired by Garrit's example."
+ }
 ]
