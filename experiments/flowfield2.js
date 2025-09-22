@@ -1,14 +1,14 @@
 let agents = [];
-let scale = 20;          // grid cell size
-let noiseDivider = 100;  // subtle variation
-let globalAngle = Math.PI / 4; // direction (45°)
+let scale = 20;          
+let noiseDivider = 100;  
+let globalAngle = Math.PI / 4; 
 
 function setup() {
-  createCanvas(windowWidth, windowHeight); // canvas appended to body
+  createCanvas(windowWidth, windowHeight);
   for (let i = 0; i < 500; i++) {
     agents.push(new Agent(random(width), random(height)));
   }
-  background(10, 10, 30); // dark background
+  background(10, 10, 30); 
 }
 
 function draw() {
@@ -22,7 +22,7 @@ function draw() {
 
 class Agent {
   constructor(x, y) {
-    this.pos = createVector(x, y);
+    this.pos = createVector(x, y);    
     this.vel = createVector(0, 0);
     this.acc = createVector(0, 0);
     this.maxSpeed = 2;
@@ -50,11 +50,15 @@ class Agent {
   }
 
   edges() {
-    if (this.pos.x > width) this.pos.x = 0;
-    if (this.pos.x < 0) this.pos.x = width;
-    if (this.pos.y > height) this.pos.y = 0;
-    if (this.pos.y < 0) this.pos.y = height;
-    this.prevPos = this.pos.copy();
+    let wrapped = false; // flag to check if we teleport
+    if (this.pos.x > width) { this.pos.x = 0; wrapped = true; }
+    if (this.pos.x < 0) { this.pos.x = width; wrapped = true; }
+    if (this.pos.y > height) { this.pos.y = 0; wrapped = true; }
+    if (this.pos.y < 0) { this.pos.y = height; wrapped = true; }
+
+    if (wrapped) {
+      this.prevPos = this.pos.copy(); // prevent lines across edges
+    }
   }
 
   show() {
