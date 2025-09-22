@@ -10,8 +10,8 @@
     "description": "This is inspired by Ed Sheeran's new album Play while keeping the main artidea of Vera Molnár."
   },
   {
-    "file":"experiments/hobbs1.js",
+    "file": "experiments/hobbs1.js",
     "name": "V1 - Abstract Flowers",
-    "description": "Abstract flowers aligned in rows and columns"
+    "description": "Abstract flowers aligned in rows and columns."
   }
 ]

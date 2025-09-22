@@ -1,12 +1,12 @@
 /*Parts of the code were written with guidance from ChatGPT (OpenAI, 2025). 
 Guidance includes forming random triangles, grid layout, coloring, and optional wiggle.*/
 
-let size = 120;   // size of each triangle block
 let layers = 8;   // layers per triangle
 let t = 0;        // time for wiggle
+const cols = 4;   // number of columns
 
 function setup() {
-  createCanvas(1000, 1000);
+  createCanvas(windowWidth, windowHeight);
   frameRate(3);
 }
 
@@ -43,12 +43,11 @@ function drawLayersTriangle(x, y, size, layers, t) {
 
 
 function draw() {
-  // background(255, 150, 200);
   let c1 = color(255, 120 + 50 * sin(t * 2), 180 + 40 * cos(t * 2));
   let c2 = color(255, 180 + 40 * cos(t * 2), 220 + 50 * sin(t * 2));
 
-  let cols = 4;
-  let rows = 4;
+  let size = width / cols;
+  let rows = floor(height / size);
 
   // calculate total grid size
   let gridW = cols * size;
@@ -56,7 +55,7 @@ function draw() {
 
   // offsets to center the grid
   let offsetX = (width - gridW) / 2;
-  let offsetY = (height - gridH) / 2 - 100;
+  let offsetY = (height - gridH) / 2;
 
   for (let y = 0; y < height; y++) {
     let inter = map(y, 0, height, 0, 1);
@@ -78,4 +77,8 @@ function draw() {
   }
 
   t += 0.05; // update time for wiggle
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
