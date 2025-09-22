@@ -7,11 +7,11 @@
   {
     "file": "experiments/molnar2.js",
     "name": "V2 - Play",
-    "description": "This is inspired by Ed Sheeran's new album Play while keeping the main artidea of Vera Molnár."
+    "description": "This is inspired by Ed Sheeran's Play while keeping the art idea of Vera Molnár."
   },
   {
     "file": "experiments/hobbs1.js",
-    "name": "V1 - Abstract Flowers",
-    "description": "Abstract flowers aligned in rows and columns."
+    "name": "V1 - Flower Blues",
+    "description": "Random clickable flowers in shades of blue with inspiration from Hobbs."
   }
 ]

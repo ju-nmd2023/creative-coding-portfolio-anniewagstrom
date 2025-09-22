@@ -43,8 +43,8 @@ function drawLayersTriangle(x, y, size, layers, t) {
 
 
 function draw() {
-  let c1 = color(255, 120 + 50 * sin(t * 2), 180 + 40 * cos(t * 2));
-  let c2 = color(255, 180 + 40 * cos(t * 2), 220 + 50 * sin(t * 2));
+  let c1 = color(255, 100 + 60 * sin(t * 2), 160 + 50 * cos(t * 2));
+  let c2 = color(255, 150 + 60 * cos(t * 2), 200 + 50 * sin(t * 2));
 
   let size = width / cols;
   let rows = floor(height / size);
@@ -76,7 +76,7 @@ function draw() {
     }
   }
 
-  t += 0.05; // update time for wiggle
+  t += 0.1; // update time for wiggle
 }
 
 function windowResized() {
