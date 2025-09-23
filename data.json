@@ -10,23 +10,28 @@
     "description": "This is inspired by Ed Sheeran's Play while keeping the art idea of Vera Molnár."
   },
   {
-    "file": "experiments/hobbs.js",
+    "file": "experiments/hobbs1.js",
     "name": "V3 - Flower Blues",
     "description": "Random clickable flowers in shades of blue with inspiration from Hobbs."
   },
+  {
+    "file": "experiments/hobbs2.js",
+    "name": "V4 - TriNeoBloss",
+    "description": "Trippy Neon Blossoms that grow, rotate, and shimmer with your every hover."
+  }, 
   {
     "file": "experiments/waveclock.js",
     "name": "Midnight Whirl",
     "description": "A colorful wavy spiral, inspired by Matt Pearson. In the Wave Clock, Pearson uses Perlin noise and spirals to create dynamic generative visuals."
   },
   {
-  "file": "experiments/flowfield.js",
-  "name": "V1 - flowfield",
-  "description": "Flowfield inspired by Garrit's example."
+    "file": "experiments/flowfield.js",
+    "name": "V1 - flowfield",
+    "description": "Flowfield inspired by Garrit's example."
   },
   {
-  "file": "experiments/flowfield2.js",
-  "name": "V2 - flowfield",
-  "description": "Another variation of flowfield."
+    "file": "experiments/flowfield2.js",
+    "name": "V2 - flowfield",
+    "description": "Another variation of flowfield."
  }
 ]
