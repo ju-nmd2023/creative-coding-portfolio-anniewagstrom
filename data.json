@@ -25,6 +25,11 @@
     "description": "A colorful wavy spiral, inspired by Matt Pearson. In the Wave Clock, Pearson uses Perlin noise and spirals to create dynamic generative visuals."
   },
   {
+    "file": "experiments/wc-sound.js",
+    "name": "Opus Swirl",
+    "description": "Accelerate with Opus Swirl. A combination between Pearson's waveclock and the Opus song accelerating together, using Tone.js."
+  },
+  {
     "file": "experiments/flowfield.js",
     "name": "V1 - flowfield",
     "description": "Flowfield inspired by Garrit's example."
