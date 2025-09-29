@@ -17,6 +17,9 @@ let lineColors = [
 let synth;
 let toneStarted = false;
 
+// Effects
+let reverb, delay;
+
 // Speeds
 let baseAngleSpeed = 0.2;
 let baseNoteInterval = 0.4;
@@ -26,18 +29,19 @@ let currentStroke = [200, 200, 255];
 
 let startTime;
 
-// Define 4 chords (each with 4 notes)
+// Chord progression (4 variations)
 let chordProgression = [
-  ["C5", "E4", "A4", "E4"],   // Variation 1
-  ["B5", "G4", "B4", "A4"],  // Variation 2: same contour as var3, slightly different pitches
-  ["A5", "F4", "C5", "B4"],   // Variation 3
-  ["B4", "D4", "G4", "D4"]    // Variation 4
+  ["C5", "E4", "A4", "E4"],
+  ["B5", "G4", "B4", "A4"],
+  ["A5", "F4", "C5", "B4"],
+  ["B4", "D4", "G4", "D4"]
 ];
 
 let currentChordIndex = 0;
-let noteInChord = 0;   // which note to play (0..3)
-let chordPlayCount = 0;
-let chordPlayMax = 4;  // play each chord 4 times before switching
+let noteInChord = 0;
+let variationPlayCount = 0; // counts how many times this variation has cycled
+let variationPlayMax = 4;   // each variation plays 4 times (16 notes per variation)
+let totalNoteCount = 0;     // global note counter
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -47,17 +51,22 @@ function setup() {
   colorMode(RGB, 255, 255, 255, 1);
   strokeWeight(1.5);
 
+  // Main synth
   synth = new Tone.PolySynth(Tone.Synth, {
     oscillator: { type: "sine" },
     envelope: { attack: 0.05, decay: 0.1, sustain: 0.5, release: 1 }
-  }).toDestination();
+  });
+
+  // Pedal effect
+  delay = new Tone.FeedbackDelay("8n", 0.25);
+  reverb = new Tone.Reverb({ decay: 3, preDelay: 0.2, wet: 0.4 });
+  synth.chain(delay, reverb, Tone.Destination);
 
   document.body.addEventListener("click", async () => {
     if (!toneStarted) {
       await Tone.start();
       toneStarted = true;
       startTime = millis();
-
       Tone.Transport.scheduleOnce(playNote, "+0");
       Tone.Transport.start();
     }
@@ -70,6 +79,7 @@ function playNote(time) {
   let chord = chordProgression[currentChordIndex];
   let note = chord[noteInChord];
 
+  // Play chord
   synth.triggerAttackRelease(note, "8n", time);
   currentStroke = lineColors[noteInChord % lineColors.length];
 
@@ -77,16 +87,24 @@ function playNote(time) {
   noteInChord++;
   if (noteInChord >= 4) {
     noteInChord = 0;
-    chordPlayCount++;
-    if (chordPlayCount >= chordPlayMax) {
-      chordPlayCount = 0;
+    variationPlayCount++;
+
+    // After 4 cycles, move to next variation
+    if (variationPlayCount >= variationPlayMax) {
+      variationPlayCount = 0;
       currentChordIndex = (currentChordIndex + 1) % chordProgression.length;
     }
   }
 
+  totalNoteCount++;
+
   // Speed adjustments
   angleSpeed += 0.003;
   noteInterval *= 0.992;
+  if (noteInterval < 0.15) noteInterval = 0.15;
+  if (angleSpeed > 2.0) angleSpeed = 2.0;
+
+  // Reset every 60s
   if (millis() - startTime > 60000) {
     angleSpeed = baseAngleSpeed;
     noteInterval = baseNoteInterval;
@@ -107,12 +125,7 @@ function draw() {
   angle += noise(radiusNoise) * angleSpeed * 6 - angleSpeed * 3;
   let rad = radians(angle);
 
-  let x1 = centerX + radius * cos(rad);
-  let y1 = centerY + radius * sin(rad);
-
   let oppositeRad = rad + PI;
-  let x2 = centerX + radius * cos(oppositeRad);
-  let y2 = centerY + radius * sin(oppositeRad);
 
   let pulse = map(sin(frameCount * 0.3), -1, 1, 0.8, 1.2);
   let px1 = centerX + radius * cos(rad) * pulse;
